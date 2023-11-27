@@ -58,7 +58,7 @@ class Localization
     private static function loadLanguageData(language:String):Dynamic
     {
         var jsonContent:String;
-        var path:String = Paths.file("languages/" + language + ".json");
+        var path:String = Paths.file("languages/" + language + ".json"); // You can edit this if you need to
 
         // Attempt to load the requested file
         if (FileSystem.exists(path)) {
