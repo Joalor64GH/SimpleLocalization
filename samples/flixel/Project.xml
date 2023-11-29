@@ -29,13 +29,13 @@
 	<set name="BUILD_DIR" value="export/release" unless="debug" />
 
 	<source path="source" />
-	<assets path="assets"/>
+	<assets path="assets" />
 
 	<!-- _______________________________ Libraries ______________________________ -->
 
 	<haxelib name="flixel" />
 
-	<haxelib name="hxcpp-debug-server" if="desktop debug"/>
+	<haxelib name="hxcpp-debug-server" if="desktop debug" />
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
