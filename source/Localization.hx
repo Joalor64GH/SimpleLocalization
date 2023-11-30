@@ -25,7 +25,7 @@ class Localization
 
     /**
      * Simply loads languages based on an array of codes.
-     * @param languages An array containing the language codes (Example: ["en-us", "es-es", "fr-fr"])
+     * @param languages An array containing the language codes (Example: ["en-us", "es-es", "fr-fr"]).
      * @return Whether or not all languages were successfully loaded.
      */
 
