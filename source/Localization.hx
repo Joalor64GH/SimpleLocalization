@@ -110,7 +110,7 @@ class Localization
      * Retrieves a localized string for a given key and language.
      * @param key The key for the localized string.
      * @param language The language to retrieve the string from.
-     * @return The localized string if available, otherwise, returns the key itself if not found.
+     * @return The localized string.
      */
 
     public static function get(key:String, language:String = "en-us"):String
@@ -125,6 +125,6 @@ class Localization
             }
         }
 
-        return key; // Returns the key itself
+        return Reflect.field(languageData, key); // Returns the string
     }
 }

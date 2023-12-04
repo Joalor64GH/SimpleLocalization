@@ -10,7 +10,7 @@ class PlayState extends FlxState
 {
     var daText:FlxText;
 
-    var greeting:String = Localization.get("greeting", "en-us");
+    var greeting:String = Localization.get("greeting");
 
     override public function create()
     {

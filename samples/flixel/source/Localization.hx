@@ -90,6 +90,6 @@ class Localization
             }
         }
 
-        return key;
+        return Reflect.field(languageData, key);
     }
 }
