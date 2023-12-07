@@ -80,10 +80,10 @@ class Localization
 
     public static function get(key:String, language:String = "en-us"):String
     {
+        var targetLanguage:String = language.toLowerCase();
+        var languageData = data.get(targetLanguage);
         if (data != null) {
-            var targetLanguage:String = language.toLowerCase();
             if (data.exists(targetLanguage)) {
-                var languageData = data.get(targetLanguage);
                 if (languageData != null && Reflect.hasField(languageData, key)) {
                     return Reflect.field(languageData, key);
                 }
