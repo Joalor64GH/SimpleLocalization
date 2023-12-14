@@ -1,9 +1,8 @@
 package;
 
-#if sys
 import sys.io.File;
 import sys.FileSystem;
-#end
+
 import flixel.FlxG;
 import haxe.Json;
 
@@ -82,6 +81,7 @@ class Localization
     {
         var targetLanguage:String = language.toLowerCase();
         var languageData = data.get(targetLanguage);
+        
         if (data != null) {
             if (data.exists(targetLanguage)) {
                 if (languageData != null && Reflect.hasField(languageData, key)) {
