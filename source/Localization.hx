@@ -2,12 +2,13 @@ package;
 
 #if sys
 import sys.io.File;
-import sys.FileSystem;
 #end
 
 #if openfl
 import openfl.system.Capabilities;
 #end
+import openfl.Assets;
+
 import haxe.Json;
 import haxe.io.Path;
 
@@ -59,7 +60,8 @@ class Localization
      */
     public static var systemLanguage(get, never):String;
 
-    public static function get_systemLanguage() {
+    public static function get_systemLanguage() 
+    {
         #if openfl
         return Capabilities.language; 
         #else
@@ -71,7 +73,8 @@ class Localization
      * is to start the Class but for something more customizable you can use loadLanguages
      * @param config is where you will have the variables to configure the Class
      */
-    public static function init(config:ApplicationConfig) {
+    public static function init(config:ApplicationConfig) 
+    {
         directory = config.directory ?? "languages";
         DEFAULT_LANGUAGE = config.default_language ?? "en-us";
 
@@ -111,10 +114,18 @@ class Localization
 
         try {
             // Use the requested language if the file is found
+            #if sys
             jsonContent = File.getContent(path(language));
+            #else
+            jsonContent = Assets.getText(path(language));
+            #end
         } catch (e) { // If an error occurs, it will set the default language!
             trace('file not found: $e');
+            #if sys
             jsonContent = File.getContent(path(DEFAULT_LANGUAGE));
+            #else
+            jsonContent = Assets.getText(path(DEFAULT_LANGUAGE));
+            #end
         }
 
         return Json.parse(jsonContent);
@@ -123,15 +134,13 @@ class Localization
     /**
      * Used to switch languages to a specified code.
      * @param newLanguage The new language to switch to.
-     * @return Whether or not the switch was successful.
      */
 
     public static function switchLanguage(newLanguage:String)
     {
         // Check if requested language is the same as the current language 
-        if (newLanguage == currentLanguage) {
+        if (newLanguage == currentLanguage)
             return; // Language is already selected, so no change is needed
-        }
 
         // Attempt to load data for requested language
         var languageData:Dynamic = loadLanguageData(newLanguage);
@@ -171,7 +180,7 @@ class Localization
      */
     private static function path(language:String) {
         var localDir = Path.join([directory, language + ".json"]);
-        var path:String = Paths.file(localDir);
+        var path:String = Paths.file(localDir); // change this if you need to
         return path; 
     }
 }
