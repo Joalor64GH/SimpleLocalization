@@ -12,11 +12,6 @@ Localization.init({
 });
 ```
 
-Loading languages:
-```hx
-Localization.loadLanguages(["en-us", "es-es", "fr-fr", "pt-br", "yr-hr"]);
-```
-
 Switching to another language:
 ```hx
 Localization.switchLanguage("en-us");
