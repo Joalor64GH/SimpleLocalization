@@ -19,7 +19,7 @@ Localization.switchLanguage("en-us");
 
 Retrieving a key:
 ```hx
-Localization.get("greeting", "en-us");
+Localization.get("greeting", "en-us"); // If the second parameter is empty, defaults to current language
 ```
 
 Basic `.json` setup:
