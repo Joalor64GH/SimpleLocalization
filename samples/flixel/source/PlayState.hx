@@ -10,16 +10,17 @@ class PlayState extends FlxState
 {
     var daText:FlxText;
 
-    var greeting:String = Localization.get("greeting");
-
     override public function create()
     {
-        Localization.loadLanguages(["en-us", "es-es", "fr-fr", "pt-br", "yr-hr"]);
-        Localization.switchLanguage("en-us"); // Default language
+        Localization.init({
+            languages: ['en-us', 'es-es', 'fr-fr', 'pt-br', 'yr-hr', 'sex'],
+            directory: "languages", // this variable is optional
+            default_language: "en-us" // this variable is optional
+        });
 
-        daText = new FlxText(0, 0, 0, greeting, 12);
+        daText = new FlxText(0, 0, FlxG.width, '', 12);
         daText.setFormat(Paths.font("vcr.ttf"), 64, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-        daText.screenCenter(XY);
+        daText.screenCenter(Y);
         add(daText);
 
         var daText2:FlxText = new FlxText(4, FlxG.height - 24, 0, 'Use 1-5 to switch languages.', 12);
@@ -34,21 +35,12 @@ class PlayState extends FlxState
     {
         super.update(elapsed);
 
-        if (FlxG.keys.justPressed.ONE) {
-            Localization.switchLanguage("en-us");
-            daText.text = Localization.get('greeting');
-        } else if (FlxG.keys.justPressed.TWO) {
-            Localization.switchLanguage("es-es");
-            daText.text = Localization.get('greeting', 'es-es');
-        } else if (FlxG.keys.justPressed.THREE) {
-            Localization.switchLanguage("fr-fr");
-            daText.text = Localization.get('greeting', 'fr-fr');
-        } else if (FlxG.keys.justPressed.FOUR) {
-            Localization.switchLanguage("pt-br");
-            daText.text = Localization.get('greeting', 'pt-br');
-        } else if (FlxG.keys.justPressed.FIVE) {
-            Localization.switchLanguage("yr-hr");
-            daText.text = Localization.get('greeting', 'yr-hr');
-        }
+        if (FlxG.keys.justPressed.ONE) Localization.switchLanguage("en-us");
+        else if (FlxG.keys.justPressed.TWO) Localization.switchLanguage("es-es");
+        else if (FlxG.keys.justPressed.THREE) Localization.switchLanguage("fr-fr");
+        else if (FlxG.keys.justPressed.FOUR) Localization.switchLanguage("pt-br");
+        else if (FlxG.keys.justPressed.FIVE) Localization.switchLanguage("yr-hr");
+        
+        daText.text = Localization.get('greeting');
     }
 }
