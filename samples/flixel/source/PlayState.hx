@@ -13,7 +13,7 @@ class PlayState extends FlxState
     override public function create()
     {
         Localization.init({
-            languages: ['en-us', 'es-es', 'fr-fr', 'pt-br', 'yr-hr', 'sex'],
+            languages: ['en-us', 'es-es', 'fr-fr', 'pt-br', 'yr-hr'],
             directory: "languages", // this variable is optional
             default_language: "en-us" // this variable is optional
         });
