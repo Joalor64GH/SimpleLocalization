@@ -1,9 +1,12 @@
 package;
 
+import flixel.input.keyboard.FlxKey;
+
 import flixel.util.FlxColor;
 import flixel.text.FlxText;
 import flixel.FlxState;
 import flixel.FlxG;
+
 import Localization;
 
 class PlayState extends FlxState
@@ -20,10 +23,10 @@ class PlayState extends FlxState
 
         daText = new FlxText(0, 0, FlxG.width, '', 12);
         daText.setFormat(Paths.font("vcr.ttf"), 64, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-        daText.screenCenter(Y);
+        daText.screenCenter(XY);
         add(daText);
 
-        var daText2:FlxText = new FlxText(4, FlxG.height - 24, 0, 'Use 1-5 to switch languages.', 12);
+        var daText2:FlxText = new FlxText(5, FlxG.height - 24, 0, 'Use 1-5 to switch languages.', 12);
         daText2.setFormat(Paths.font("vcr.ttf"), 26, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
         daText2.scrollFactor.set();
         add(daText2);
@@ -35,11 +38,16 @@ class PlayState extends FlxState
     {
         super.update(elapsed);
 
-        if (FlxG.keys.justPressed.ONE) Localization.switchLanguage("en-us");
-        else if (FlxG.keys.justPressed.TWO) Localization.switchLanguage("es-es");
-        else if (FlxG.keys.justPressed.THREE) Localization.switchLanguage("fr-fr");
-        else if (FlxG.keys.justPressed.FOUR) Localization.switchLanguage("pt-br");
-        else if (FlxG.keys.justPressed.FIVE) Localization.switchLanguage("yr-hr");
+        final keyPressed:FlxKey = FlxG.keys.firstJustPressed();
+        if (keyPressed != FlxKey.NONE) {
+            switch (keyPressed) {
+                case ONE: Localization.switchLanguage("en-us");
+                case TWO: Localization.switchLanguage("es-es");
+                case THREE: Localization.switchLanguage("fr-fr");
+                case FOUR: Localization.switchLanguage("pt-br");
+                case FIVE: Localization.switchLanguage("yr-hr");
+            }
+        }
         
         daText.text = Localization.get('greeting');
     }
